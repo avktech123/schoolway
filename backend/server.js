@@ -9,7 +9,7 @@ app.use(cors());
 app.use(express.json());
 
 // MongoDB connection
-mongoose.connect('mongodb+srv://vipul1998pandey:CTTTNZ3IsAld3KdM@cluster0.hg9zlvf.mongodb.net/chat-app')
+mongoose.connect('mongodb://localhost:27017/schoolway')
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log('MongoDB connection error:', err));
 
