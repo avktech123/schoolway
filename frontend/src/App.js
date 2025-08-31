@@ -4,9 +4,11 @@ function App() {
   const [message, setMessage] = useState('Loading...');
 
   useEffect(() => {
-    fetch('http://localhost:6000/api/test')
+    fetch('http://localhost:3001/api/test')
       .then(res => res.json())
-      .then(data => setMessage(data.message))
+      .then(data => {
+        setMessage(data.message)
+      })
       .catch(err => setMessage('Failed to connect to backend'));
   }, []);
 

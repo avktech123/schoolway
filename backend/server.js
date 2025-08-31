@@ -3,7 +3,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 
 const app = express();
-const PORT = 6000;
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
@@ -15,7 +15,7 @@ mongoose.connect('mongodb://localhost:27017/schoolway')
 
 // Simple API endpoint
 app.get('/api/test', (req, res) => {
-  res.json({ message: 'Backend connected successfully!' });
+  res.json({ message: 'Hureyyy! Backend connected successfully!' });
 });
 
 app.listen(PORT, () => {
