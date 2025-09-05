@@ -25,7 +25,6 @@ const Login = () => {
     setError('');
 
     const { data } = await signIn(formData);
-    console.log('Login result:', data);
     if (data.token) {
       dispatch({
         type: 'SET_USER',
@@ -38,7 +37,6 @@ const Login = () => {
     } else {
       setError(data.error);
     }
-
     setLoading(false);
   };
 

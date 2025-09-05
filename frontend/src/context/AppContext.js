@@ -15,7 +15,6 @@ const appReducer = (state, action) => {
       return { ...state, loading: action.payload };
     case 'SET_USER':
       const { user, token } = action.payload;
-      console.log('Setting user:', action);
       if (token) {
         Cookies.set('token', token, { expires: 7 });
         Cookies.set('user', JSON.stringify(user), { expires: 7 });
@@ -38,7 +37,6 @@ export const AppProvider = ({ children }) => {
   useEffect(() => {
     const token = Cookies.get('token');
     const userData = Cookies.get('user');
-    console.log('Restoring session with token:', token, 'and userData:=======>', userData);
     if (token && userData) {
       try {
         const user = JSON.parse(userData);
