@@ -1,22 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { routes } from './routes';
+import ProtectedRoute, { PublicRoute } from './components/ProtectedRoute';
 
 function App() {
-  const [message, setMessage] = useState('Loading...');
-
-  useEffect(() => {
-    fetch('http://localhost:3001/api/test')
-      .then(res => res.json())
-      .then(data => {
-        setMessage(data.message)
-      })
-      .catch(err => setMessage('Failed to connect to backend'));
-  }, []);
-
   return (
-    <div style={{ padding: '20px', textAlign: 'center' }}>
-      <h1>Schoolway MERN App</h1>
-      <p>{message || 'Welcome to Schoolway!'}</p>
-    </div>
+    <Routes>
+      {routes.map((route, index) => (
+        <Route
+          key={index}
+          path={route.path}
+          element={
+            route.type === 'public' ? (
+              route.path === '/' ? (
+                <route.component />
+              ) : (
+                <PublicRoute>
+                  <route.component />
+                </PublicRoute>
+              )
+            ) : (
+              <ProtectedRoute>
+                <route.component />
+              </ProtectedRoute>
+            )
+          }
+        />
+      ))}
+    </Routes>
   );
 }
 
